@@ -2,7 +2,7 @@
 FROM node:latest
 
 # Establece el directorio de trabajo dentro del contenedor
-WORKDIR /app/frontend
+WORKDIR /naranja-frontend
 
 # Copia los archivos de tu proyecto frontend al contenedor
 COPY . .
