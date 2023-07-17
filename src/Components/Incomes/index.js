@@ -57,10 +57,6 @@ const FormIncome = () => {
     return total + Number(amount);
   }, 0);
 
-
-
-
-
   return (
     <>
     <Menu/>

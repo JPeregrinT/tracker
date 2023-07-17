@@ -43,6 +43,7 @@ const Login = () => {
   }
   return (
     <>
+    <h1 id='title__app'>Orange Tracker</h1>
     
     <Container id='main-container' className='container__login'>
     <Form id='sign-in-form' className='text-center p-4 w-100'>

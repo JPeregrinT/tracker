@@ -2,7 +2,14 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-   
+}
+
+#title__app {
+  color: #f7a20e;
+  font-size: 30px;
+  padding-left: .5em;
+  padding-top: .5em;
+  font-weight: bold;
 }
 
 #sign-in-form {
