@@ -12,9 +12,7 @@ const FormIncome = () => {
 
     const [refresh, toggle] = useState(false);
     const [incomeList, setIncomeList] = useState([])
-
     const [error, setError] = useState('');
-
     const [title, setTitle] = useState('');
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');

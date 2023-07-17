@@ -30,22 +30,6 @@ const Footer = () => {
         <span> orangetracker05@gmail.com</span>
             </li>
           </ul>
-          
-          <ul className="contact__list">
-            <h6 id='support__footer'>Support</h6>
-            <li className='li__footer__support'>
-              <span>Contact us</span>
-            </li>
-            <li className='li__footer__support'>
-              <span>Web chat</span>
-            </li>
-            <li className='li__footer__support'>
-              <span></span>
-
-            </li>
-          </ul>
-
-          
           <ul className="followUs__list">
             <h6 id='followUs__footer'>Follow us</h6>
             <li className='li__footer__followUs'>
