@@ -1,23 +1,50 @@
 #container__footer{
-    background-color: #fca30a;
+    background: #02003e7c;
+    position: relative;
     width: 100%;
-    height: 100%;
-    padding-bottom: 5em;
+    height: 45vh;
+}
+
+#container__items__footer {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 3em;
+    justify-content: space-around;
+}
+
+#backToTop{
+    padding: 1em;
+    background: #02003e7c;
+    color: #fff;
+}
+#backToTop:hover{
+    background: #04006a7c;
+}
+
+#link__backToTop{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
 }
 
 #copyRight__text{
     display:flex;
+    border-top: 1px solid #a9a9a9;
+    margin-right: 10em;
+    margin-left: 10em;
+    padding-top: 5em;
     justify-content: center;
     color: #fff;
 }
-#contact__footer{
+#contact__footer, #company__footer, #followUs__footer{
     color: #fff;
     text-decoration: underline;
 }
-.contact__list, .li__footer__contact{
-    gap: 2em;
+.contact__list, .li__footer__contact, .li__footer__followUs{
     color: #fff;
     text-decoration: none;
+    cursor: pointer;
 }
 
 
