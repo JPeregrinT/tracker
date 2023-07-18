@@ -14,7 +14,7 @@ RUN npm install
 RUN npm run build
 
 # Expone el puerto en el que se ejecuta tu aplicación frontend
-EXPOSE 8000
+EXPOSE 3000
 
 # Define el comando de inicio para servir los archivos estáticos
 CMD ["npm", "run"]
