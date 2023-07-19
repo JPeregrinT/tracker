@@ -36,6 +36,12 @@ const ExpenseList = ({ refresh }) => {
   const [expenseList, setExpenseList] = useState([]);
   const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del pop-up
   const [selectedExpense, setSelectedExpense] = useState(null); // Estado para almacenar el gasto seleccionado
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const userId = window.localStorage.getItem('userId');
+
+  useEffect(() => {
+    expensesGetter();
+  }, []);
 
   const expensesGetter = async () => {
     const userId = window.localStorage.getItem('userId');
@@ -46,10 +52,6 @@ const ExpenseList = ({ refresh }) => {
       console.log('Error get Expense', error);
     }
   };
-
-  useEffect(() => {
-    expensesGetter();
-  }, []);
 
   const handleDeleteExpense = async (_id) => {
     try {
@@ -66,6 +68,48 @@ const ExpenseList = ({ refresh }) => {
     setShowModal(true);
   };
 
+  const filterCategory = async (userId, category) => {
+    try {
+      const response = await axios.get(`${backendUrl}/api/v1/filter-expense/${userId}`, {
+        params: {
+          category: category,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log('Error filtering category', error);
+      throw error;
+    }
+  };
+
+  const handleCategoryChange = async (category) => {
+    try {
+      const filteredExpenseList = await filterCategory(userId, category);
+      setExpenseList(filteredExpenseList);
+      setSelectedCategory(category);
+    } catch (error) {
+      console.log('Error filtering category', error);
+    }
+  };
+
+  const CategorySelector = ({ userId }) => {
+    return (
+      <div>
+        <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Education">Education</option>
+          <option value="Groceries">Groceries</option>
+          <option value="Health">Health</option>
+          <option value="Subscriptions">Subscriptions</option>
+          <option value="Takeaways">Takeaways</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Travelling">Travelling</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    );
+  };
+
   const ExpenseCard = ({ title, amount, date, category, description, _id }) => {
     let icon = null;
 
@@ -79,11 +123,11 @@ const ExpenseList = ({ refresh }) => {
       case 'Health':
         icon = <FontAwesomeIcon className='icon' icon='briefcase-medical' />;
         break;
-        case 'Subscriptions':
+      case 'Subscriptions':
         icon = <FontAwesomeIcon className='icon' icon='tv' />;
         break;
       case 'Takeaways':
-        icon = <FontAwesomeIcon className='icon' icon='burger' />;
+        icon = <FontAwesomeIcon className='icon' icon='hamburger' />;
         break;
       case 'Clothing':
         icon = <FontAwesomeIcon className='icon' icon='tshirt' />;
@@ -104,7 +148,7 @@ const ExpenseList = ({ refresh }) => {
           <date>{dateFormat(date)}</date>
           <p>{category}</p>
           <p>{description}</p>
-          <Button type='submit' variant='secondary' id='mdfyIncome' onClick={() => handleModifyExpense(_id)}>
+          <Button type='submit' variant='secondary' id='mdfyExpense' onClick={() => handleModifyExpense(_id)}>
             Modify
           </Button>
           <Button type='submit' id='dltExpense' onClick={() => handleDeleteExpense(_id)}>
@@ -137,6 +181,8 @@ const ExpenseList = ({ refresh }) => {
   return (
     <>
       <div id='expense__card'>
+        <label>FILTER BY CATEGORY</label>
+        <CategorySelector userId={userId} />
         {expenseList.map((expense) => (
           <ExpenseCard
             key={expense._id}
