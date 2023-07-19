@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaInstagram, FaTwitter, FaFacebook, FaLinkedin, FaArrowUp } from 'react-icons/fa';
 import '../Footer/Footer.css';
+import { NavLink } from 'react-bootstrap';
 
 const Footer = () => {
   const handleBackToTop = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
   return (
     <footer>
       <div id="backToTop">
-        <a href="#" onClick={handleBackToTop} id="link__backToTop"><FaArrowUp className="backToTop__icon" /> Back to Top</a>
+        <NavLink href="#" onClick={handleBackToTop} id="link__backToTop"><FaArrowUp className="backToTop__icon" /> Back to Top</NavLink>
       </div>
       <div id="container__footer">
         <div id='container__items__footer'>
@@ -26,7 +27,8 @@ const Footer = () => {
             </li>
             <li className='li__footer__contact'>
               <FaEnvelope className="contact__icon" />
-              <span> orangetracker05@gmail.com</span>
+    
+        <span> orangetracker05@gmail.com</span>
             </li>
           </ul>
           

@@ -35,16 +35,15 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const TransactionList = ({ refresh }) => {
   const [transactionList, setTransactionList] = useState([]);
- 
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const userId = window.localStorage.getItem('userId');
 
   const transactionsGetter = async () => {
-    const userId = window.localStorage.getItem('userId');
+   
 
-    console.log(userId);
     try {
       const { data } = await axios.get(`${backendUrl}/api/v1/get-transaction/${userId}`);
       setTransactionList(data);
-      console.log('esto es data', data);
     } catch (error) {
       console.log('Error get Transaction', error);
     }
@@ -53,6 +52,48 @@ const TransactionList = ({ refresh }) => {
   useEffect(() => {
     transactionsGetter();
   }, [refresh]);
+
+  const filterCategory = async (userId, category) => {
+    try {
+      const response = await axios.get(`${backendUrl}/api/v1/filter-transaction/${userId}`, {
+        params: {
+          category: category,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log('Error filtering category', error);
+      throw error;
+    }
+  };
+
+  const handleCategoryChange = async (category) => {
+    try {
+      const filteredTransactionList = await filterCategory(userId, category);
+      setTransactionList(filteredTransactionList);
+      setSelectedCategory(category);
+    } catch (error) {
+      console.log('Error filtering category', error);
+    }
+  };
+
+  const CategorySelector = ({ userId }) => {
+    return (
+      <div>
+        <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Education">Education</option>
+          <option value="Groceries">Groceries</option>
+          <option value="Health">Health</option>
+          <option value="Subscriptions">Subscriptions</option>
+          <option value="Takeaways">Takeaways</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Travelling">Travelling</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    );
+  };
 
   const TransactionCard = ({ title, amount, date, category, description, _id, type }) => {
     const textColor = type === 'Expense' ? 'red' : 'green';
@@ -68,11 +109,11 @@ const TransactionList = ({ refresh }) => {
       case 'Health':
         icon = <FontAwesomeIcon className='icon' icon='briefcase-medical' />;
         break;
-        case 'Subscriptions':
+      case 'Subscriptions':
         icon = <FontAwesomeIcon className='icon' icon='tv' />;
         break;
       case 'Takeaways':
-        icon = <FontAwesomeIcon className='icon' icon='burger' />;
+        icon = <FontAwesomeIcon className='icon' icon='hamburger' />;
         break;
       case 'Clothing':
         icon = <FontAwesomeIcon className='icon' icon='tshirt' />;
@@ -83,7 +124,6 @@ const TransactionList = ({ refresh }) => {
       default:
         icon = <FontAwesomeIcon className='icon' icon='ellipsis-h' />;
     }
-  
 
     return (
       <tr key={_id}>
@@ -104,6 +144,10 @@ const TransactionList = ({ refresh }) => {
       <div className='transactions__container'>
         <div className='title__transaction'>
           <h2 id='title__transactions'>Transactions</h2>
+        </div>
+        <div>
+          <label>FILTER BY CATEGORY</label>
+          <CategorySelector userId={selectedCategory} />
         </div>
         <table className='table'>
           <thead>
