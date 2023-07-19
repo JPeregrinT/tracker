@@ -53,7 +53,7 @@ const IncomeList = ({ refresh }) => {
 
   const filterCategory = async (userId, category) => {
     try {
-      const response = await axios.get(`${backendUrl}/api/v1/filter-category/${userId}`, {
+      const response = await axios.get(`${backendUrl}/api/v1/filter-income/${userId}`, {
         params: {
           category: category,
         },
@@ -109,7 +109,6 @@ const IncomeList = ({ refresh }) => {
     return (
       <div>
         <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
-          <option value="">{selectedCategory}</option>
           <option value="All">All</option>
           <option value="Education">Education</option>
           <option value="Groceries">Groceries</option>
