@@ -127,30 +127,30 @@ const Profile = ({refresh}) => {
         let isError = false;
         let errors = {};
 
-        const regexList = {
-            name: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
-            surName: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
-            birthdate: /^(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[12][0-9]|3[01])\/(?:19|20)\d{2}$/,
-            email: /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/,
-            password: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
-            address: /^[A-Za-z0-9\s]+$/
-        };
+        // const regexList = {
+        //     name: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
+        //     surName: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
+        //     birthdate: /^(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[12][0-9]|3[01])\/(?:19|20)\d{2}$/,
+        //     email: /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/,
+        //     password: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+        //     address: /^[A-Za-z0-9\s]+$/
+        // };
 
-        const {email, password, name, surName, gender, birthdate, city, country, address, number, postCode, image} = form
+        // const {email, password, name, surName, gender, birthdate, city, country, address, number, postCode, image} = form
 
-        for (const [key,value] of Object.entries(form)) { // Object.entries:  Nos devuelve una array con la key y value.
-            if(!value.trim()){
-                errors[key] = `The "${key}" field must not be empty.`
-                isError = true;
-            }else if (!regexList[key].test(value)){
-                errors[key] = `The "${key}" field only accepts letters and numbers.`
-            }
+        // for (const [key,value] of Object.entries(form)) { // Object.entries:  Nos devuelve una array con la key y value.
+        //     if(!value.trim()){
+        //         errors[key] = `The "${key}" field must not be empty.`
+        //         isError = true;
+        //     }else if (!regexList[key].test(value)){
+        //         errors[key] = `The "${key}" field only accepts letters and numbers.`
+        //     }
             
-        }
+        // }
 
           return isError ? errors : null
         }
-        const {form, errors, handleChange, handleSubmit} = useForm(initialData, onValidate)
+        const { errors,  handleSubmit} = useForm(initialData, onValidate)
 
     return (
         <>

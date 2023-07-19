@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Container, Form} from 'react-bootstrap';
+import { Button, Form} from 'react-bootstrap';
 import './Register.css'
 import axios from 'axios';
 import useForm from '../../hooks/useForm';
@@ -114,9 +114,16 @@ const Register = () => {
                 </div>
 
                 <div id='container__avatar__register'>
-                    <input type="file" id='input__img' onChange={UploadAvatar}/>
-                    
-                    {image && <img className='newImg__avatar__profile' src={image} alt='' />}      
+                    <label className="file-input-label__register">
+                        <span className='span__img__register'>Add an image here:</span>
+                            {!image && <input type="file" id='input__img__register' onChange={UploadAvatar} />}
+                        
+                            {image && (
+                                <div id='image__container__register'>
+                                    <img className='newImg__avatar__register' src={image} alt='' />
+                                </div>
+                            )}
+                    </label>
                 </div>
                 
                 <Form.Group className="mb-1">
