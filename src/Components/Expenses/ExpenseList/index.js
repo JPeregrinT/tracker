@@ -95,7 +95,7 @@ const ExpenseList = ({ refresh }) => {
   const CategorySelector = ({ userId }) => {
     return (
       <div>
-        <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
+        <select id='filter__category' value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
           <option value="All">All</option>
           <option value="Education">Education</option>
           <option value="Groceries">Groceries</option>
@@ -181,7 +181,7 @@ const ExpenseList = ({ refresh }) => {
   return (
     <>
       <div id='expense__card'>
-        <label>FILTER BY CATEGORY</label>
+        <label id='filterByCategory'>FILTER BY CATEGORY</label>
         <CategorySelector userId={userId} />
         {expenseList.map((expense) => (
           <ExpenseCard

@@ -81,3 +81,8 @@
 #btn__saveChanges:active {
     background: #d8bf92;
   }
+
+  .selectByCategoryInExp {
+    color: #f7a20e;
+    font-weight: 500;
+  }

@@ -35,8 +35,6 @@ const FormIncome = () => {
             
         } catch (error) {
             setError(error.response.data.error)
-            console.log('error income', error.response.data)
-            console.error('Error create Income', error)
         }
     };
 

@@ -34,3 +34,7 @@
   .table th {
     background-color: #e4e0e0bb;
   }
+
+  .filterByCategoryInView, .SelectByCategoryInView{
+    margin-left: 2em;
+  }

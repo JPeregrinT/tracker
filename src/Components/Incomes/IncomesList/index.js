@@ -107,8 +107,8 @@ const IncomeList = ({ refresh }) => {
     };
 
     return (
-      <div>
-        <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
+      <div className='selectByCategoryInInc'>
+        <select id='filter__category' value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
           <option value="All">All</option>
           <option value="Education">Education</option>
           <option value="Groceries">Groceries</option>
@@ -193,7 +193,7 @@ const IncomeList = ({ refresh }) => {
 
   return (
     <div id='income__card'>
-      <label>FILTER BY CATEGORY</label>
+      <label id='filterByCategory'>FILTER BY CATEGORY</label>
       <CategorySelector userId={userId} setIncomeList={setIncomeList} />
       {incomeList.map((income) => (
         <IncomeCard

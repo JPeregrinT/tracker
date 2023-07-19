@@ -79,8 +79,8 @@ const TransactionList = ({ refresh }) => {
 
   const CategorySelector = ({ userId }) => {
     return (
-      <div>
-        <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
+      <div className='SelectByCategoryInView'>
+        <select id='filter__category'   value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)}>
           <option value="All">All</option>
           <option value="Education">Education</option>
           <option value="Groceries">Groceries</option>
@@ -146,7 +146,7 @@ const TransactionList = ({ refresh }) => {
           <h2 id='title__transactions'>Transactions</h2>
         </div>
         <div>
-          <label>FILTER BY CATEGORY</label>
+          <label id='filterByCategory' className='filterByCategoryInView'>FILTER BY CATEGORY</label>
           <CategorySelector userId={selectedCategory} />
         </div>
         <table className='table'>

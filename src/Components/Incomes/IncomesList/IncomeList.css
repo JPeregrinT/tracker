@@ -80,3 +80,17 @@
 #btn__saveChanges:active {
     background: #d8bf92;
   }
+
+#filterByCategory{
+    color: #f7a20e;
+    font-weight: 500;
+}
+
+  #filter__category {
+    color: #fff;
+    background: #2121219f;
+    border: none;
+    border-radius: 5px;
+    margin: 1em;
+    text-align: center;
+  }
