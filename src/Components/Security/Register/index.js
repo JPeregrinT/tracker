@@ -53,7 +53,6 @@ const Register = () => {
                 }else if (!regexList[key].test(value)){
                     errors[key] = `The "${key}" field only accepts letters and numbers.`
                 }
-                
             }
       
           return isError ? errors : null
@@ -115,17 +114,11 @@ const Register = () => {
                 </div>
 
                 <div id='container__avatar__register'>
-                    <label className="file-input-label__register">
-                        <span className='span__img__register'>Add an image here:</span>
-                            {!image && <input type="file" id='input__img__register' onChange={UploadAvatar} />}
-                        
-                            {image && (
-                                <div id='image__container__register'>
-                                    <img className='newImg__avatar__register' src={image} alt='' />
-                                </div>
-                            )}
-                    </label>
+                    <input type="file" id='input__img' onChange={UploadAvatar}/>
+                    
+                    {image && <img className='newImg__avatar__profile' src={image} alt='' />}      
                 </div>
+                
                 <Form.Group className="mb-1">
                     <Form.Label className='text-danger' >* Name:</Form.Label>
                     <Form.Control required  name='name' onChange={e => setName(e.currentTarget.value)}  className='inputsRegister' type='text' size="lg" /> 
