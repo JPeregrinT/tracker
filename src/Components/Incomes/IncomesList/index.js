@@ -41,7 +41,7 @@ const IncomeList = ({ refresh }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const filteredIncomeList = await filterCategory(userId, 'Education');
+        const filteredIncomeList = await filterCategory(userId, 'All');
         setIncomeList(filteredIncomeList);
       } catch (error) {
         console.log('Error fetching filtered income list', error);
